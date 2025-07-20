@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fefefe;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+header {
+    background-color: #e0f7fa;
+    padding: 20px;
+}
+
+.hero-image {
+    width: 4in;
+    height: 3in;
+    display: block;
+    margin: 20px auto;
+    object-fit: cover; /* ensures it fills the size without distortion */
+}
+
+footer nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #0077cc;
+    text-align: left;
+}
+
+footer nav a:hover {
+    text-decoration: underline;
+}

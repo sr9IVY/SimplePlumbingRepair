@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Visitor Feedback Archive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fefefe;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #0077cc;
+    }
+    .feedback-entry {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+    .date {
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Visitor Feedback Archive</h1>
+  <div id="stored-feedback"></div>
+
+  <script>
+    // Retrieve data from localStorage (or sessionStorage if you prefer)
+    const feedbackData = JSON.parse(localStorage.getItem('feedbackArchive')) || [];
+
+    const container = document.getElementById('stored-feedback');
+    if (feedbackData.length === 0) {
+      container.innerHTML = "<p>No feedback has been stored yet.</p>";
+    } else {
+      feedbackData.forEach(entry => {
+        const div = document.createElement('div');
+        div.className = "feedback-entry";
+        div.innerHTML = `
+          <p class="date">🗓️ ${entry.date}</p>
+          💬 <strong>Comment:</strong> ${entry.comment}<br>
+          ${entry.email ? `📧 <strong>Email:</strong> ${entry.email}` : ""}
+        `;
+        container.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>

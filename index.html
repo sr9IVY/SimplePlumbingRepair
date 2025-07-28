@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Simple Plumbing Repairs</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #fefefe; margin: 0; padding: 0;">
+<body>
 
-  <header style="background-color: #e0f7fa; padding: 20px; text-align: center;">
+  <header class="header">
     <h1>Welcome to Simple Plumbing Repairs</h1>
   </header>
 
-  <main style="padding: 20px;">
-    <img 
-  src="simpleplumbinglogo.jpg" 
-  alt="Simple Plumbing Repairs logo" 
-  style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
-  >
-    <p style="text-align: center;">Your one-stop guide to home plumbing solutions.</p>
+  <main class="main-content">
+    <img src="simpleplumbinglogo.jpg" alt="Simple Plumbing Repairs logo" class="main-image">
+    <p class="tagline">Your one-stop guide to home plumbing solutions.</p>
 
-    <div style="background-color: rgb(0, 0, 255); color: white; padding: 20px; margin-top: 20px; text-align: left;">
+    <div class="info-block">
       <p>This website has been set up by its owners to assist people in doing simple plumbing repairs and installations on their own without having to hire a professional plumber.</p>
       <p>A computer user coming to the site can navigate to any of the 5 pages by clicking on the links shown below:</p>
       <ul>
@@ -29,38 +26,20 @@
         <li>Page 4 - Bathroom Repairs and Replacements</li>
       </ul>
 
-      <p><strong>🔧 Attribution Statement for SimplePlumbingRepairs</strong><br><br>
+      <p class="attribution"><strong>🔧 Attribution Statement for SimplePlumbingRepairs</strong><br><br>
         This website was created as part of a classroom project to demonstrate the structure and conceptual potential of a commercial plumbing repair site... [truncated for brevity].
       </p>
 
-      <section id="visitor-feedback" style="background-color: #ffffff; color: #000000; padding: 20px; text-align: left;">
+      <section id="visitor-feedback" style="background-color: #ffffff; color: #000000; padding: 20px;">
         <h2>Visitor Comments</h2>
         <p>We would like to hear from you. Please provide your feedback in 30 words or less and include your optional email address.</p>
         
         <form id="feedback-form">
-  <input 
-    type="text" 
-    id="comment-input" 
-    placeholder="Your comment here..." 
-    style="width: 100%; max-width: 500px; padding: 10px; margin-bottom: 10px;"
-  ><br>
-
-  <input 
-    type="text" 
-    id="name-input" 
-    placeholder="Your First and Last Name" 
-    style="width: 100%; max-width: 500px; padding: 10px; margin-bottom: 10px;"
-  ><br>
-
-  <input 
-    type="email" 
-    id="email-input" 
-    placeholder="Your email (optional)" 
-    style="width: 100%; max-width: 500px; padding: 10px; margin-bottom: 10px;"
-  ><br>
-
-  <button type="submit">Submit</button>
-</form>
+          <input type="text" id="comment-input" placeholder="Your comment here..." style="width: 100%; max-width: 500px; padding: 10px; margin-bottom: 10px;"><br>
+          <input type="text" id="name-input" placeholder="Your First and Last Name" style="width: 100%; max-width: 500px; padding: 10px; margin-bottom: 10px;"><br>
+          <input type="email" id="email-input" placeholder="Your email (optional)" style="width: 100%; max-width: 500px; padding: 10px; margin-bottom: 10px;"><br>
+          <button type="submit">Submit</button>
+        </form>
 
         <p id="feedback-message" style="margin-top: 10px; font-weight: bold;"></p>
       </section>
@@ -82,88 +61,53 @@
           feedbackCount = parseInt(localStorage.getItem('feedbackCount'), 10);
         }
 
-       document.getElementById('feedback-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+          event.preventDefault();
 
-  if (feedbackCount >= 5) {
-    document.getElementById('feedback-message').textContent = "The feedback box is closed for the day, and will be available tomorrow.";
-    return;
-  }
+          if (feedbackCount >= 5) {
+            document.getElementById('feedback-message').textContent = "The feedback box is closed for the day, and will be available tomorrow.";
+            return;
+          }
 
-  const comment = document.getElementById('comment-input').value.trim();
-  const name = document.getElementById('name-input').value.trim(); // ✅ new line
-  const email = document.getElementById('email-input').value.trim();
+          const comment = document.getElementById('comment-input').value.trim();
+          const name = document.getElementById('name-input').value.trim();
+          const email = document.getElementById('email-input').value.trim();
 
-  if (wordCount(comment) > 30) {
-    document.getElementById('feedback-message').textContent = "Please keep your comment to 30 words or fewer.";
-    return;
-  }
+          if (wordCount(comment) > 30) {
+            document.getElementById('feedback-message').textContent = "Please keep your comment to 30 words or fewer.";
+            return;
+          }
 
-  const timestamp = new Date().toLocaleString();
-  const newEntry = { name, comment, email, date: timestamp }; // ✅ include name here
+          const timestamp = new Date().toLocaleString();
+          const newEntry = { name, comment, email, date: timestamp };
 
-  const feedbackArchive = JSON.parse(localStorage.getItem('feedbackArchive')) || [];
-  feedbackArchive.push(newEntry);
-  localStorage.setItem('feedbackArchive', JSON.stringify(feedbackArchive));
+          const feedbackArchive = JSON.parse(localStorage.getItem('feedbackArchive')) || [];
+          feedbackArchive.push(newEntry);
+          localStorage.setItem('feedbackArchive', JSON.stringify(feedbackArchive));
 
-  document.getElementById('comment-input').value = "";
-  document.getElementById('name-input').value = ""; // ✅ clear name field
-  document.getElementById('email-input').value = "";
-  document.getElementById('feedback-message').textContent = "Thank you for your feedback!";
+          document.getElementById('comment-input').value = "";
+          document.getElementById('name-input').value = "";
+          document.getElementById('email-input').value = "";
+          document.getElementById('feedback-message').textContent = "Thank you for your feedback!";
 
-  feedbackCount += 1;
-  localStorage.setItem('feedbackCount', feedbackCount);
+          feedbackCount += 1;
+          localStorage.setItem('feedbackCount', feedbackCount);
 
-  if (feedbackCount >= 5) {
-    document.getElementById('feedback-message').textContent = "The feedback box is closed for the day, and will be available tomorrow.";
-  }
-});
+          if (feedbackCount >= 5) {
+            document.getElementById('feedback-message').textContent = "The feedback box is closed for the day, and will be available tomorrow.";
+          }
+        });
       </script>
     </div>
-  </main>document.getElementById('feedback-form').addEventListener('submit', function(event) {
-  event.preventDefault();
+  </main>
 
-  if (feedbackCount >= 5) {
-    document.getElementById('feedback-message').textContent = "The feedback box is closed for the day, and will be available tomorrow.";
-    return;
-  }
-
-  const comment = document.getElementById('comment-input').value.trim();
-  const name = document.getElementById('name-input').value.trim(); //  new line
-  const email = document.getElementById('email-input').value.trim();
-
-  if (wordCount(comment) > 30) {
-    document.getElementById('feedback-message').textContent = "Please keep your comment to 30 words or fewer.";
-    return;
-  }
-
-  const timestamp = new Date().toLocaleString();
-  const newEntry = { name, comment, email, date: timestamp }; //  include name here
-
-  const feedbackArchive = JSON.parse(localStorage.getItem('feedbackArchive')) || [];
-  feedbackArchive.push(newEntry);
-  localStorage.setItem('feedbackArchive', JSON.stringify(feedbackArchive));
-
-  document.getElementById('comment-input').value = "";
-  document.getElementById('name-input').value = ""; //  clear name field
-  document.getElementById('email-input').value = "";
-  document.getElementById('feedback-message').textContent = "Thank you for your feedback!";
-
-  feedbackCount += 1;
-  localStorage.setItem('feedbackCount', feedbackCount);
-
-  if (feedbackCount >= 5) {
-    document.getElementById('feedback-message').textContent = "The feedback box is closed for the day, and will be available tomorrow.";
-  }
-});
-
-  <footer style="text-align: center; padding: 10px;">
+  <footer class="footer-nav">
     <nav>
-      <a href="index.html" style="margin: 0 10px; color: #0077cc;">Main</a>
-      <a href="getting-ready.html" style="margin: 0 10px; color: #0077cc;">1</a>
-      <a href="unclogging.html" style="margin: 0 10px; color: #0077cc;">2</a>
-      <a href="kitchen-repair.html" style="margin: 0 10px; color: #0077cc;">3</a>
-      <a href="bathroom-repair.html" style="margin: 0 10px; color: #0077cc;">4</a>
+      <a href="index.html">Main</a>
+      <a href="getting-ready.html">1</a>
+      <a href="unclogging.html">2</a>
+      <a href="kitchen-repair.html">3</a>
+      <a href="bathroom-repair.html">4</a>
     </nav>
   </footer>
 

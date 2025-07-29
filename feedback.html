@@ -44,36 +44,42 @@
   <div id="stored-feedback" class="table-container"></div>
 
   <script>
+    // Read and parse feedback archive from localStorage
     const feedbackData = JSON.parse(localStorage.getItem('feedbackArchive')) || [];
     const container = document.getElementById('stored-feedback');
 
     if (feedbackData.length === 0) {
       container.innerHTML = "<p>No feedback has been stored yet.</p>";
     } else {
+      // Build and render the feedback table
       const table = document.createElement('table');
       table.className = 'feedback-table';
 
-      table.innerHTML = `
-        <thead>
-          <tr>
-            <th>Date/Time</th>
-            <th>First and Last Name</th>
-            <th>Feedback</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${feedbackData.map(entry => `
-            <tr>
-              <td>${entry.date || "-"}</td>
-              <td>${entry.name || "-"}</td>
-              <td>${entry.comment || "-"}</td>
-            </tr>
-          `).join("")}
-        </tbody>
+      const thead = document.createElement('thead');
+      thead.innerHTML = `
+        <tr>
+          <th>Date/Time</th>
+          <th>First and Last Name</th>
+          <th>Feedback</th>
+        </tr>
       `;
+      table.appendChild(thead);
 
+      const tbody = document.createElement('tbody');
+      feedbackData.forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.date || "-"}</td>
+          <td>${entry.name || "-"}</td>
+          <td>${entry.comment || "-"}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      table.appendChild(tbody);
       container.appendChild(table);
     }
   </script>
 </body>
 </html>
+

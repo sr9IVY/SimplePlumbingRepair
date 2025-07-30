@@ -20,9 +20,9 @@
       <p>A computer user coming to the site can navigate to any of the 5 pages by clicking on the links shown below:</p>
       <ul>
         <li>Home - This page contains the index shown below</li>
-        <li>Startup - Startup for Repairs</li>
-        <li>Unclog - Unclogging Blockages</li>
-        <li>Kitchens - Kitchen Repairs</li>
+        <li>Startup -   Startup for Repairs</li>
+        <li>Unclog -    Unclogging Blockages</li>
+        <li>Kitchens -  Kitchen Repairs</li>
         <li>Bathrooms - Bathroom Repairs</li>
       </ul>
 
@@ -77,10 +77,10 @@ The logo consists of a cartoon plumber from a free use site Freepik.com and two 
           const email = document.getElementById('email-input').value.trim();
 
           if (wordCount(comment) > 30) {
-            document.getElementById('feedback-message').textContent = "Please keep your comment to 30 words or fewer.";
+            document.getElementById('feedback-message').textContent = "Please keep your comment to 30 words or fewer. Any feedback or all personal informmation provided here will be kept private with us and deleted as soon as possible.";
             return;
           }
-
+hr
           const timestamp = new Date().toLocaleString();
           const newEntry = { name, comment, email, date: timestamp };
 

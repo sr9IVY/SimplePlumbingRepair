@@ -60,6 +60,7 @@
         <tr>
           <th>Date/Time</th>
           <th>First and Last Name</th>
+          <th>Email Address</th>
           <th>Feedback</th>
         </tr>
       `;
@@ -71,6 +72,7 @@
         row.innerHTML = `
           <td>${entry.date || "-"}</td>
           <td>${entry.name || "-"}</td>
+          <td>${entry.email || "N/A"}</td>
           <td>${entry.comment || "-"}</td>
         `;
         tbody.appendChild(row);

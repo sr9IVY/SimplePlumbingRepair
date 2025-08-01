@@ -2,7 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #87ceeb;
-    margin: 0 0 0 40px; /* top right bottom left = 40px left margin ≈ 4 characters */
+    margin: 0 0 0 100px; /* top right bottom left = 100px left margin ≈ 4 characters */
     padding: 0;
     color: white;
     text-align: left;

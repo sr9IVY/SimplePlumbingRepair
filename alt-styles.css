@@ -2,10 +2,10 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #87ceeb;
-    margin: 10;
+    margin: 0 0 0 40px; /* top right bottom left = 40px left margin ≈ 4 characters */
     padding: 0;
     color: white;
-    text-align: left; /* ← left-align ALL body content */
+    text-align: left;
 }
 
 header {
